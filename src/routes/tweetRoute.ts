@@ -1,5 +1,5 @@
 import express from 'express'
-import { getAllTweets } from '../controllers/tweet-handler'
+import { getAllTweets } from '@controllers/tweet-handler'
 const router = express.Router()
 
 router.route('/')

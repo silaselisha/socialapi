@@ -1,5 +1,5 @@
-import catchAsync from "../../utils/catch-async";
-import CustomError from "../../utils/errors";
+import catchAsync from "src/utils/catch-async";
+// import CustomError from "../../utils/errors";
 
 export const getAllUsers = catchAsync(async (req, res, next) => {
 

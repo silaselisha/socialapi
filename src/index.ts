@@ -1,17 +1,28 @@
+import path from 'path'
+import fs from 'fs'
+
 import express, {Request, Response, NextFunction } from 'express'
 import cors from 'cors'
+import morgan from 'morgan'
+import dotenv from 'dotenv'
+
+import errorHandler from '@controllers/error-handler'
+import userRouter from '@routes/userRoute'
+import tweetRouter from '@routes/tweetRoute'
 
 
-import errorHandler from './controllers/error-handler'
-import userRouter from './routes/userRoute'
-import tweetRouter from './routes/tweetRoute'
+dotenv.config({path: path.join(__dirname, '../.env')})
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
+if(typeof(process.env.NODE_ENV) === 'string' && process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
+
 const PORT: number = Number(process.env.PORT) || 3000
-const localhost: string = `127.0.0.1`
+const localhost = `127.0.0.1`
 
 app.get('/', (req, res) => {
     res.status(200).json({
