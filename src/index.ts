@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
 import errorHandler from '@controllers/error-handler'
 import userRouter from '@routes/userRoute'
 import tweetRouter from '@routes/tweetRoute'
+import loginRouter from '@routes/authRoute'
 
 
 dotenv.config({path: path.join(__dirname, '../.env')})
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRouter)
 app.use('/tweets', tweetRouter)
+app.use('/account', loginRouter)
 
 app.all('*', (req: Request, res: Response, next: NextFunction) => {
    return next(new Error('This route is not implemented!'))

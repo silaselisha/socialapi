@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { PrismaClient } from '@prisma/client'
 
 import catchAsync from "@utils/catch-async";
@@ -10,6 +11,7 @@ import CustomError from "@utils/errors";
 const prisma = new PrismaClient()
 
 interface UserData {
+    name:       string;
     email:      string;
     image?:     string;
     username:   string;
@@ -41,10 +43,11 @@ export const getUser = catchAsync(async (req, res, next) => {
 })
 
 export const createUser = catchAsync(async (req, res, next) => {
-    const {username, email, bio, image}: UserData = req.body
+    const {name, username, email, bio, image}: UserData = req.body
 
     const newUser = await prisma.user.create({
         data: {
+            name,
             username,
             email,
             bio,
