@@ -1,5 +1,4 @@
 import path from 'path'
-import fs from 'fs'
 
 import express, {Request, Response, NextFunction } from 'express'
 import cors from 'cors'
@@ -20,6 +19,8 @@ app.use(cors())
 if(typeof(process.env.NODE_ENV) === 'string' && process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'))
 }
+
+
 
 const PORT: number = Number(process.env.PORT) || 3000
 const localhost = `127.0.0.1`
